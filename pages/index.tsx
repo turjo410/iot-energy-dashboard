@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import CountUp from 'react-countup';
 import Papa from 'papaparse';
+import { useRouter } from 'next/router'; // Import useRouter
 
 // --- TYPE DEFINITIONS for your specific CSV structure ---
 interface EnergyDataRow {
@@ -47,11 +48,14 @@ export default function App() {
     const [energyData, setEnergyData] = useState<EnergyDataRow[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isClient, setIsClient] = useState(false);
+    const router = useRouter(); // ** Get the router object **
 
     useEffect(() => {
         setIsClient(true);
-        // Fetch data from the public folder
-        Papa.parse('/data.csv', {
+        // ** Use the basePath for the correct file path **
+        const csvPath = `${router.basePath}/data.csv`;
+
+        Papa.parse(csvPath, {
             download: true,
             header: true,
             dynamicTyping: true,
@@ -64,10 +68,10 @@ export default function App() {
             error: (error: any) => {
                 console.error("Error fetching or parsing CSV:", error);
                 setIsLoading(false);
-                alert("Could not load data.csv from the public folder. Please ensure it's there and correctly formatted.");
+                alert("Could not load data.csv. Please ensure it's in the /public folder and the basePath in next.config.js is correct.");
             }
         });
-    }, []);
+    }, [router.basePath]); // Add router.basePath as a dependency
 
     if (!isClient || isLoading) {
         return (
@@ -222,7 +226,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                     </InfoSection>
 
                     <StickyHardwareSection
-                        title="The IoT Device" name="TAXNELE Wi-Fi Smart Meter"
+                        title="The IoT Device" name="TOMZN Wi-Fi Smart Meter 63A with TUYA APP"
                         imageUrl="https://img.drz.lazcdn.com/static/bd/p/af92c845f03cea3acefe999f63eba721.jpg_720x720q80.jpg_.webp"
                         specs={[
                             { icon: Zap, label: "Voltage Range", value: "AC80-400V" },
@@ -230,7 +234,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                             { icon: Wifi, label: "Connectivity", value: "2.4GHz Wi-Fi" },
                         ]}
                     >
-                        The core of the system is the TAXNELE Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
+                        The core of the system is the TOMZN Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
                     </StickyHardwareSection>
 
                     <StickyHardwareSection
@@ -444,7 +448,7 @@ const DevicesPage = ({ data }: { data: EnergyDataRow[] }) => {
     );
 };
 
-const ReportPage = () => {
+const ReportPage = ({ data }: { data: EnergyDataRow[] }) => {
     const swot = {
         Strengths: ["Low-cost hardware", "Real-time data visualization", "High-resolution data capture"],
         Weaknesses: ["Dependent on Wi-Fi stability", "Single point of failure (smart plug)", "Requires technical setup"],
@@ -579,13 +583,15 @@ const StickyHardwareSection = ({ title, name, imageUrl, specs, children, reverse
 
 const ProjectGallery = () => {
     const [selectedMedia, setSelectedMedia] = useState<{src: string, type: string} | null>(null);
+    const router = useRouter();
+    
     // ** IMPORTANT: Replace these with your actual file paths in the /public/gallery folder **
     const galleryItems = [
-        { type: 'video', src: '/gallery/video1.mp4', thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+1' },
-        { type: 'image', src: '/gallery/image1.jpg', thumbnail: '/gallery/image1.jpg' },
-        { type: 'image', src: '/gallery/image2.jpg', thumbnail: '/gallery/image2.jpg' },
-        { type: 'video', src: '/gallery/video2.mp4', thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+2' },
-        { type: 'image', src: '/gallery/image3.jpg', thumbnail: '/gallery/image3.jpg' },
+        { type: 'video', src: `${router.basePath}/gallery/video1.mp4`, thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+1' },
+        { type: 'image', src: `${router.basePath}/gallery/image1.jpg`, thumbnail: `${router.basePath}/gallery/image1.jpg` },
+        { type: 'image', src: `${router.basePath}/gallery/image2.jpg`, thumbnail: `${router.basePath}/gallery/image2.jpg` },
+        { type: 'video', src: `${router.basePath}/gallery/video2.mp4`, thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+2' },
+        { type: 'image', src: `${router.basePath}/gallery/image3.jpg`, thumbnail: `${router.basePath}/gallery/image3.jpg` },
     ];
 
     return (
