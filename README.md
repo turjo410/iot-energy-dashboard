@@ -1,11 +1,11 @@
 # ⚡️ EnergyIQ: IoT Based Real-Time Energy Monitoring
 
 <p align="center">
-  <img src="https://i.imgur.com/8f1764.png" alt="EnergyIQ Dashboard Screenshot" width="800"/>
+  <img src="[https://i.imgur.com/8f1764.png](https://i.imgur.com/Yw3KF8S.png)" alt="EnergyIQ Dashboard Screenshot" width="800"/>
 </p>
 
 <p align="center">
-  A sophisticated, real-time energy monitoring dashboard built with Next.js, TypeScript, and Framer Motion. This project, developed for the CSE407 Green Computing course, transforms raw energy consumption data into a dynamic, interactive, and insightful web application.
+  A sophisticated, real-time energy monitoring dashboard built with Next.js, TypeScript, and Framer Motion. This project, developed for the CSE407 Green Computing course, transforms raw energy consumption data from a household appliance into a dynamic, interactive, and insightful web application.
 </p>
 
 <p align="center">
@@ -42,6 +42,28 @@ This dashboard is a fully-featured application that fulfills all the requirement
 * **🕹️ Interactive Device Control:** A functional device management page that simulates On/Off control for connected appliances, with the refrigerator's status linked to the live data.
 * **📈 Strategic Reports:** A dedicated report page presenting a full SWOT and PESTLE analysis in a visually appealing, interactive format.
 * **🖼️ Interactive Media Gallery:** An animated gallery showcasing project videos and images with a full-screen, click-to-enlarge modal.
+
+---
+
+## ⚙️ Hardware & Setup
+
+This project uses a real-world IoT setup to capture high-resolution energy data from a common household appliance.
+
+| Measurement Device | Monitored Appliance |
+| :---: | :---: |
+| **TOMZN Wi-Fi Smart Meter (63A)** | **Sharp SJ-EX315E-SL Refrigerator** |
+| <img src="https://i.imgur.com/8aZ2c7D.png" width="250"> | <img src="https://www.startech.com.bd/image/cache/catalog/appliance/refrigerator/sj-ex315e-sl/sj-ex315e-sl-01-500x500.webp" width="250"> |
+| This smart circuit breaker is installed to measure the electrical parameters of the refrigerator. It connects via Wi-Fi and exports the data using the **Tuya App ecosystem**. | A 253-liter inverter refrigerator was chosen for its cyclical consumption patterns, making it an excellent subject for detailed energy profiling. |
+
+### What Was Measured?
+
+The IoT device captures a rich dataset, allowing for comprehensive analysis of the following key parameters:
+- **Active Power (kW):** The real power being consumed by the appliance.
+- **Voltage (V) & Current (A):** The fundamental electrical properties of the supply.
+- **Power Factor (PF):** A measure of how efficiently the appliance is using electricity.
+- **Energy Consumption (kWh):** The cumulative energy used over time.
+- **Cumulative Cost (BDT):** The running total of the electricity cost, calculated based on local tariffs.
+- **Compressor State:** The On/Off status of the refrigerator's compressor, which is the primary driver of its energy use.
 
 ---
 
