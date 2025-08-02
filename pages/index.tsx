@@ -228,7 +228,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                         <div className="absolute left-1/2 top-1/4 h-[60rem] w-[80rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] bg-[radial-gradient(circle_at_50%_50%,#2563eb_0%,#1e3a8a_50%,transparent_100%)] opacity-20"></div>
                     </div>
                     <motion.p variants={itemVariants} className="text-4xl font-semibold leading-8 text-blue-400">{studentInfo.course}</motion.p>
-                    <motion.h1 variants={itemVariants} className="mt-4 text-7xl font-bold tracking-tight text-white sm:text-9xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{studentInfo.title}</motion.h1>
+                    <motion.h1 variants={itemVariants} className="mt-4 text-7xl font-bold tracking-tight text-white sm:text-7xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{studentInfo.title}</motion.h1>
                     <motion.div variants={itemVariants} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-x-16 gap-y-8">
                         <div className="text-left text-4xl"><p className="text-gray-300"><span className="font-semibold text-white">Submitted By:</span> {studentInfo.name}</p><p className="text-gray-300"><span className="font-semibold text-white">Student ID:</span> {studentInfo.id}</p></div>
                         <div className="text-left text-4xl"><p className="text-gray-300"><span className="font-semibold text-white">Submitted To:</span> {studentInfo.instructor}</p></div>
