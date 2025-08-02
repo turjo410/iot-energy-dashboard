@@ -8,7 +8,8 @@ import {
     Zap, Home, BarChart2, DollarSign, Settings, Bell, User, Search,
     CheckCircle, Wifi, Activity, TrendingUp, AlertTriangle, Lightbulb,
     Cpu, Snowflake, Refrigerator, LayoutDashboard, ChevronRight, HardDrive, MemoryStick, FilePieChart, Power, Quote,
-    Target, BookOpen, BrainCircuit, Scale, Globe, Shield, Leaf, Briefcase, Landmark, Video, Image as ImageIcon, X
+    Target, BookOpen, BrainCircuit, Scale, Globe, Shield, Leaf, Briefcase, Landmark, Video, Image as ImageIcon, X,
+    FileText, Sheet, Github, ArrowDown // Added ArrowDown icon
 } from 'lucide-react';
 import CountUp from 'react-countup';
 import Papa from 'papaparse';
@@ -111,7 +112,6 @@ const DashboardLayout = ({ data }: { data: EnergyDataRow[] }) => {
                         {activeTab === 'analytics' && <AnalyticsPage key="analytics" data={data} />}
                         {activeTab === 'cost' && <CostPage key="cost" data={data} />}
                         {activeTab === 'devices' && <DevicesPage key="devices" data={data} />}
-                        {/* FIX: Passed the 'data' prop to the ReportPage component */}
                         {activeTab === 'report' && <ReportPage key="report" data={data} />}
                     </AnimatePresence>
                 </main>
@@ -167,17 +167,32 @@ const Header = ({ latestData }: { latestData: EnergyDataRow }) => (
     <header className="bg-slate-800/30 backdrop-blur-md border-b border-slate-700 px-8 py-4 flex-shrink-0 z-10">
         <div className="flex items-center justify-between">
             <div>
-                <h2 className="text-2xl font-bold text-white">Analytics Dashboard</h2>
+                <h2 className="text-2xl font-bold text-white">Energy Profiling Dashboard</h2>
                 <p className="text-gray-400">Welcome back, Shahriar Khan!</p>
             </div>
             <div className="flex items-center space-x-4">
-                 <div className="flex items-center space-x-6 bg-slate-700/50 px-4 py-2 rounded-lg border border-slate-600">
-                    <div className="flex items-center"><Activity className="h-4 w-4 text-green-400 mr-2" /><span className="text-sm font-medium text-gray-200">{latestData ? `${(latestData.ActivePower_kW * 1000).toFixed(0)} W` : 'N/A'}</span></div>
-                    <div className="flex items-center"><Zap className="h-4 w-4 text-blue-400 mr-2" /><span className="text-sm font-medium text-gray-200">{latestData ? `${latestData.Voltage_V.toFixed(1)} V` : 'N/A'}</span></div>
+                <div className="flex items-center space-x-2">
+                    <a href="https://docs.google.com/document/d/1RrEcizQpjPvHIBKMyGJCPc7Ywqc4bi6Mdyh4JXvhsig/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg font-medium">
+                        <FileText className="h-5 w-5 mr-2" />
+                        Report
+                    </a>
+                    <a href="https://docs.google.com/spreadsheets/d/1zZA2uYZV0N1kgfirS3LXQf_9Ums2UomVJNbcqLJ1ZdM/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-lg font-medium">
+                        <Sheet className="h-5 w-5 mr-2" />
+                        Datasheet
+                    </a>
+                    <a href="https://github.com/turjo410/iot-energy-dashboard" target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors shadow-lg font-medium">
+                        <Github className="h-5 w-5 mr-2" />
+                        GitHub
+                    </a>
                 </div>
-                <button className="p-2 rounded-lg hover:bg-slate-700 transition-colors"><Bell className="h-5 w-5 text-gray-400" /></button>
-                <button className="p-2 rounded-lg hover:bg-slate-700 transition-colors"><Search className="h-5 w-5 text-gray-400" /></button>
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center"><User className="h-5 w-5 text-white" /></div>
+
+                <div className="flex items-center space-x-2 border-l border-slate-600 pl-4">
+                    <button className="p-2 rounded-lg hover:bg-slate-700 transition-colors"><Bell className="h-5 w-5 text-gray-400" /></button>
+                    <button className="p-2 rounded-lg hover:bg-slate-700 transition-colors"><Search className="h-5 w-5 text-gray-400" /></button>
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                        <User className="h-5 w-5 text-white" />
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -194,7 +209,7 @@ const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
 const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
     const studentInfo = {
         name: "Shahriar Khan", id: "2022-3-60-016", course: "CSE407 - Green Computing",
-        instructor: "Rashedul Amin Tuhin (RDA)", title: "IoT Based Real-Time Energy Monitoring"
+        instructor: "Rashedul Amin Tuhin (RDA)", title: "IoT Based Real-Time Energy Profiling and Cost Analysis of a Refrigerator"
     };
 
     const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.2, delayChildren: 0.3 } } };
@@ -217,6 +232,16 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                     <motion.div variants={itemVariants} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-x-16 gap-y-8">
                         <div className="text-left text-4xl"><p className="text-gray-300"><span className="font-semibold text-white">Submitted By:</span> {studentInfo.name}</p><p className="text-gray-300"><span className="font-semibold text-white">Student ID:</span> {studentInfo.id}</p></div>
                         <div className="text-left text-4xl"><p className="text-gray-300"><span className="font-semibold text-white">Submitted To:</span> {studentInfo.instructor}</p></div>
+                    </motion.div>
+                    {/* --- NEW SCROLL INDICATOR --- */}
+                    <motion.div variants={itemVariants} className="absolute bottom-10 flex flex-col items-center space-y-2">
+                        <span className="text-2xl font-bold text-gray-400">Scroll Down</span>
+                        <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <ArrowDown className="h-10 w-10 text-2xl text-gray-400" />
+                        </motion.div>
                     </motion.div>
                 </motion.div>
 
@@ -284,8 +309,8 @@ const DashboardPage = ({ data }: { data: EnergyDataRow[] }) => {
                 </AnimatedView>
                  <AnimatedView>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <LiveGauge title="Live Wattage" value={latest.ActivePower_kW * 1000} max={300} unit="W" color="#3b82f6" />
-                        <LiveGauge title="Live Current" value={latest.Current_A} max={2} unit="A" color="#10b981" />
+                        <LiveGauge title="Average Wattage" value={latest.ActivePower_kW * 1000} max={300} unit="W" color="#3b82f6" />
+                        <LiveGauge title="Average Current" value={latest.Current_A} max={2} unit="A" color="#10b981" />
                         <PowerFactorAnalysis data={data} />
                     </div>
                 </AnimatedView>
@@ -448,7 +473,6 @@ const DevicesPage = ({ data }: { data: EnergyDataRow[] }) => {
     );
 };
 
-// FIX: Added 'data' prop to satisfy TypeScript during build
 const ReportPage = ({ data }: { data: EnergyDataRow[] }) => {
     const swot = {
         Strengths: ["Low-cost hardware", "Real-time data visualization", "High-resolution data capture"],
