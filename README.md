@@ -52,7 +52,7 @@ This project uses a real-world IoT setup to capture high-resolution energy data 
 | Measurement Device | Monitored Appliance |
 | :---: | :---: |
 | **TOMZN Wi-Fi Smart Meter (63A)** | **Sharp SJ-EX315E-SL Refrigerator** |
-| <img src="https://i.imgur.com/8aZ2c7D.png" width="250"> | <img src="https://www.startech.com.bd/image/cache/catalog/appliance/refrigerator/sj-ex315e-sl/sj-ex315e-sl-01-500x500.webp" width="250"> |
+| <img src="[https://i.imgur.com/8aZ2c7D.png](https://img.drz.lazcdn.com/static/bd/p/af92c845f03cea3acefe999f63eba721.jpg_720x720q80.jpg_.webp)" width="250"> | <img src="https://www.startech.com.bd/image/cache/catalog/appliance/refrigerator/sj-ex315e-sl/sj-ex315e-sl-01-500x500.webp" width="250"> |
 | This smart circuit breaker is installed to measure the electrical parameters of the refrigerator. It connects via Wi-Fi and exports the data using the **Tuya App ecosystem**. | A 253-liter inverter refrigerator was chosen for its cyclical consumption patterns, making it an excellent subject for detailed energy profiling. |
 
 ### What Was Measured?
