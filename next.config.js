@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  // Add webpack configuration if needed
-  webpack: (config, { isServer }) => {
-    // Don't try to manually add mini-css-extract-plugin
-    // Next.js handles CSS extraction automatically
-    return config;
+  // ** ADD THIS FOR GITHUB PAGES DEPLOYMENT **
+  basePath: '/iot-energy-dashboard', // Replace 'iot-energy-dashboard' with your repository name
+  assetPrefix: '/iot-energy-dashboard/', // Replace 'iot-energy-dashboard' with your repository name
+  output: 'export', // Required for static export to GitHub Pages
+  images: {
+    unoptimized: true, // Required for static export
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
