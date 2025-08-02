@@ -134,7 +134,7 @@ const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setActiveTab:
         >
             <div className="flex items-center mb-12">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded-xl shadow-lg"><Zap className="h-8 w-8 text-white" /></div>
-                <h1 className="ml-3 text-2xl font-bold text-white">ENERGY-PROFILING</h1>
+                <h1 className="ml-3 text-2xl font-bold text-white">EnergyIQ</h1>
             </div>
             <ul className="space-y-3">
                 {navItems.map((item) => (
@@ -222,7 +222,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                     </InfoSection>
 
                     <StickyHardwareSection
-                        title="The IoT Device" name="TOMZN Wi-Fi Smart Meter 63A"
+                        title="The IoT Device" name="TAXNELE Wi-Fi Smart Meter"
                         imageUrl="https://img.drz.lazcdn.com/static/bd/p/af92c845f03cea3acefe999f63eba721.jpg_720x720q80.jpg_.webp"
                         specs={[
                             { icon: Zap, label: "Voltage Range", value: "AC80-400V" },
@@ -230,7 +230,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                             { icon: Wifi, label: "Connectivity", value: "2.4GHz Wi-Fi" },
                         ]}
                     >
-                        The core of the system is the TOMZN Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
+                        The core of the system is the TAXNELE Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
                     </StickyHardwareSection>
 
                     <StickyHardwareSection
@@ -579,6 +579,7 @@ const StickyHardwareSection = ({ title, name, imageUrl, specs, children, reverse
 
 const ProjectGallery = () => {
     const [selectedMedia, setSelectedMedia] = useState<{src: string, type: string} | null>(null);
+    // ** IMPORTANT: Replace these with your actual file paths in the /public/gallery folder **
     const galleryItems = [
         { type: 'video', src: '/gallery/video1.mp4', thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+1' },
         { type: 'image', src: '/gallery/image1.jpg', thumbnail: '/gallery/image1.jpg' },
@@ -617,7 +618,7 @@ const ProjectGallery = () => {
                         {selectedMedia.type === 'image' ? (
                              <motion.img layoutId={`gallery-item-${galleryItems.findIndex(i => i.src === selectedMedia.src)}`} src={selectedMedia.src} className="max-w-[90vw] max-h-[90vh] rounded-lg" />
                         ) : (
-                            <video src={selectedMedia.src} controls autoPlay className="max-w-[90vw] max-h-[90vh] rounded-lg" />
+                            <video src={selectedMedia.src} controls autoPlay className="max-w-[90vw] max-h-[90vh] rounded-lg" onClick={(e) => e.stopPropagation()} />
                         )}
                         <motion.button
                             initial={{ scale: 0 }} animate={{ scale: 1 }}
@@ -641,7 +642,7 @@ const InsightCard = ({ quote }: { quote: string }) => (
 );
 
 const AnalysisCard = ({ title, items, color }: { title: string, items: string[], color: string }) => {
-    const colors = {
+    const colors: { [key: string]: string } = {
         green: 'border-green-500 text-green-300', yellow: 'border-yellow-500 text-yellow-300',
         blue: 'border-blue-500 text-blue-300', red: 'border-red-500 text-red-300',
     };
@@ -680,7 +681,7 @@ const LiveGauge = ({ title, value, max, unit, color }: { title: string, value: n
         <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
         <ResponsiveContainer width="100%" height={150}>
             <RadialBarChart innerRadius="70%" outerRadius="100%" data={[{ value }]} startAngle={180} endAngle={0} barSize={20}>
-                <RadialBar dataKey="value" cornerRadius={10} fill={color} background={{ fill: '#374151' }} domain={[0, max]} />
+                <RadialBar dataKey="value" cornerRadius={10} fill={color} background={{ fill: '#374151' }} />
                 <text x="50%" y="75%" textAnchor="middle" dominantBaseline="middle" className="text-4xl font-bold fill-white">{value.toFixed(value > 10 ? 0 : 2)}</text>
                  <text x="50%" y="95%" textAnchor="middle" dominantBaseline="middle" className="text-lg font-semibold" fill={color}>{unit}</text>
             </RadialBarChart>
