@@ -138,7 +138,7 @@ const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setActiveTab:
         >
             <div className="flex items-center mb-12">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded-xl shadow-lg"><Zap className="h-8 w-8 text-white" /></div>
-                <h1 className="ml-3 text-2xl font-bold text-white">EnergyIQ</h1>
+                <h1 className="ml-3 text-2xl font-bold text-white">Energy-Profiling</h1>
             </div>
             <ul className="space-y-3">
                 {navItems.map((item) => (
@@ -226,7 +226,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                     </InfoSection>
 
                     <StickyHardwareSection
-                        title="The IoT Device" name="TAXNELE Wi-Fi Smart Meter"
+                        title="The IoT Device" name="TOMZN Wi-Fi Smart Meter 63A with TUYA APP"
                         imageUrl="https://img.drz.lazcdn.com/static/bd/p/af92c845f03cea3acefe999f63eba721.jpg_720x720q80.jpg_.webp"
                         specs={[
                             { icon: Zap, label: "Voltage Range", value: "AC80-400V" },
@@ -234,7 +234,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                             { icon: Wifi, label: "Connectivity", value: "2.4GHz Wi-Fi" },
                         ]}
                     >
-                        The core of the system is the TAXNELE Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
+                        The core of the system is the TOMZN Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
                     </StickyHardwareSection>
 
                     <StickyHardwareSection
