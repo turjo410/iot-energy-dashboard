@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import CountUp from 'react-countup';
 import Papa from 'papaparse';
-import { useRouter } from 'next/router'; // Import useRouter
+import { useRouter } from 'next/router';
 
 // --- TYPE DEFINITIONS for your specific CSV structure ---
 interface EnergyDataRow {
@@ -48,11 +48,10 @@ export default function App() {
     const [energyData, setEnergyData] = useState<EnergyDataRow[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isClient, setIsClient] = useState(false);
-    const router = useRouter(); // ** Get the router object **
+    const router = useRouter(); 
 
     useEffect(() => {
         setIsClient(true);
-        // ** Use the basePath for the correct file path **
         const csvPath = `${router.basePath}/data.csv`;
 
         Papa.parse(csvPath, {
@@ -71,7 +70,7 @@ export default function App() {
                 alert("Could not load data.csv. Please ensure it's in the /public folder and the basePath in next.config.js is correct.");
             }
         });
-    }, [router.basePath]); // Add router.basePath as a dependency
+    }, [router.basePath]);
 
     if (!isClient || isLoading) {
         return (
@@ -112,7 +111,8 @@ const DashboardLayout = ({ data }: { data: EnergyDataRow[] }) => {
                         {activeTab === 'analytics' && <AnalyticsPage key="analytics" data={data} />}
                         {activeTab === 'cost' && <CostPage key="cost" data={data} />}
                         {activeTab === 'devices' && <DevicesPage key="devices" data={data} />}
-                        {activeTab === 'report' && <ReportPage key="report" />}
+                        {/* FIX: Passed the 'data' prop to the ReportPage component */}
+                        {activeTab === 'report' && <ReportPage key="report" data={data} />}
                     </AnimatePresence>
                 </main>
             </div>
@@ -226,7 +226,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                     </InfoSection>
 
                     <StickyHardwareSection
-                        title="The IoT Device" name="TOMZN Wi-Fi Smart Meter 63A with TUYA APP"
+                        title="The IoT Device" name="TAXNELE Wi-Fi Smart Meter"
                         imageUrl="https://img.drz.lazcdn.com/static/bd/p/af92c845f03cea3acefe999f63eba721.jpg_720x720q80.jpg_.webp"
                         specs={[
                             { icon: Zap, label: "Voltage Range", value: "AC80-400V" },
@@ -234,7 +234,7 @@ const IntroductionPage = ({ onNavigate }: { onNavigate: () => void }) => {
                             { icon: Wifi, label: "Connectivity", value: "2.4GHz Wi-Fi" },
                         ]}
                     >
-                        The core of the system is the TOMZN Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
+                        The core of the system is the TAXNELE Smart Meter. It measures critical electrical parameters like voltage, current, and active power, transmitting data wirelessly for real-time analysis.
                     </StickyHardwareSection>
 
                     <StickyHardwareSection
@@ -448,6 +448,7 @@ const DevicesPage = ({ data }: { data: EnergyDataRow[] }) => {
     );
 };
 
+// FIX: Added 'data' prop to satisfy TypeScript during build
 const ReportPage = ({ data }: { data: EnergyDataRow[] }) => {
     const swot = {
         Strengths: ["Low-cost hardware", "Real-time data visualization", "High-resolution data capture"],
@@ -585,7 +586,6 @@ const ProjectGallery = () => {
     const [selectedMedia, setSelectedMedia] = useState<{src: string, type: string} | null>(null);
     const router = useRouter();
     
-    // ** IMPORTANT: Replace these with your actual file paths in the /public/gallery folder **
     const galleryItems = [
         { type: 'video', src: `${router.basePath}/gallery/video1.mp4`, thumbnail: 'https://placehold.co/600x800/1e293b/9ca3af?text=Project+Video+1' },
         { type: 'image', src: `${router.basePath}/gallery/image1.jpg`, thumbnail: `${router.basePath}/gallery/image1.jpg` },
