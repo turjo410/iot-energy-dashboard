@@ -1,7 +1,7 @@
 # ⚡️ EnergyIQ: IoT Based Real-Time Energy Monitoring
 
 <p align="center">
-  <img src="https://i.imgur.com/8f1764.png" alt="EnergyIQ Dashboard Screenshot" width="800"/>
+  <img src="[https://i.imgur.com/8f1764.png](https://i.imgur.com/Yw3KF8S.png)" alt="EnergyIQ Dashboard Screenshot" width="800"/>
 </p>
 
 <p align="center">
